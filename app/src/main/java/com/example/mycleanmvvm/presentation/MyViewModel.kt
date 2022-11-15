@@ -31,7 +31,7 @@ class MyViewModel(val repository: GetDataRepository) : ViewModel() {
     )
     var nameUser: SharedFlow<String> = _nameUserMutable.asSharedFlow()
 
-    suspend fun showName(id: Int) = withContext(Dispatchers.IO) {
+    suspend fun showName(id: Int) {
         _nameUserMutable.tryEmit(repository.getUserName(id))
     }
 }
