@@ -3,16 +3,12 @@ package com.example.mycleanmvvm.data.api.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class ComapanyNetworkModel {
+class ComapanyNetworkModel(
     @SerializedName("name")
-    @Expose
-    var name: String? = null
-
+    val name: String,
     @SerializedName("catchPhrase")
-    @Expose
-    var catchPhrase: String? = null
-
+    val catchPhrase: String,
     @SerializedName("bs")
-    @Expose
-    var bs: String? = null
-}
+    val bs: String
+
+)

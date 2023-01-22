@@ -1,41 +1,25 @@
 package com.example.mycleanmvvm.data.api.model
 
-import com.google.gson.annotations.Expose
+
 
 import com.google.gson.annotations.SerializedName
 
 
-class UserNetworkModel() {
-
+class UserNetworkModel(
     @SerializedName("id")
-    @Expose
-    var id: Int? = null
-
+    val id: Int,
     @SerializedName("name")
-    @Expose
-    var name: String? = null
-
+    val name: String,
     @SerializedName("username")
-    @Expose
-    var username: String? = null
-
+    val username: String,
     @SerializedName("email")
-    @Expose
-    var email: String? = null
-
+    val email: String?,
     @SerializedName("address")
-    @Expose
-    var address: AddressNetworkModel? = null
-
+    val address: AddressNetworkModel?,
     @SerializedName("phone")
-    @Expose
-    var phone: String? = null
-
+    val phone: String,
     @SerializedName("website")
-    @Expose
-    var website: String? = null
-
+    val website: String?,
     @SerializedName("company")
-    @Expose
-    var company: ComapanyNetworkModel? = null
-}
+    val company: ComapanyNetworkModel?,
+)

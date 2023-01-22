@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.mycleanmvvm.R
 import com.example.mycleanmvvm.data.repository.GetDataRepository
 import com.example.mycleanmvvm.databinding.ActivityMainBinding
+import com.example.mycleanmvvm.domain.models.CompanyDomainModel
+import com.example.mycleanmvvm.domain.models.UserDomainModel
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,18 +28,29 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, MyViewModelFactory(this)).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            MyViewModelFactory()
+        )[MyViewModel::class.java]
+
 
         lifecycleScope.launch {
             viewModel.nameUser
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect{binding.txtRes.text = it}
+                .collect(this@MainActivity::setUser)
+        }
 
+    }
+    override fun onStart() {
+        super.onStart()
+        lifecycleScope.launch {
+            viewModel.showName(1)
         }
-        val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-        coroutineScope.launch{
-            viewModel.showName(9)
-        }
+    }
+
+    private fun setUser(userDomainModel: UserDomainModel){
+        binding.txtRes.text = userDomainModel.name
+        binding.txtResAddr.text = userDomainModel.address.city
 
     }
 

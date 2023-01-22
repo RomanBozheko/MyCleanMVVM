@@ -1,21 +1,19 @@
 package com.example.mycleanmvvm.data.repository
 
-import com.example.mycleanmvvm.data.NetworkClient
+import com.example.mycleanmvvm.data.api.UserApi
+import com.example.mycleanmvvm.domain.mappers.user.toDomain
 import com.example.mycleanmvvm.domain.models.UserDomainModel
-import kotlinx.coroutines.*
+
 
 
 class GetDataRepository(
-    private val networkClient: NetworkClient
+    private val service: UserApi
 ) : GetDataRepositoryInterface {
-    override suspend fun getUserName(id: Int) = withContext(SupervisorJob() + Dispatchers.IO) {
-
-        val service = networkClient.getRetrofitInstance()
-
-        val response = service.getUser(id)
+    override suspend fun getUserName(id: Int): UserDomainModel {
+        val response = service.getUser(id).toDomain()
         println(response.name)
         println("=============================")
-        return@withContext response.name
+        return response
     }
 
 }

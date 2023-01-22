@@ -5,5 +5,5 @@ import com.example.mycleanmvvm.domain.models.UserDomainModel
 import kotlinx.coroutines.Job
 
 interface GetDataRepositoryInterface {
-   suspend fun getUserName(id: Int): String
+   suspend fun getUserName(id: Int): UserDomainModel
 }

@@ -3,12 +3,9 @@ package com.example.mycleanmvvm.data.api.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class GeoNetworkModel {
+class GeoNetworkModel(
     @SerializedName("lat")
-    @Expose
-    var lat: String? = null
-
+    val lat: String,
     @SerializedName("lng")
-    @Expose
-    var lng: String? = null
-}
+    val lng: String
+)

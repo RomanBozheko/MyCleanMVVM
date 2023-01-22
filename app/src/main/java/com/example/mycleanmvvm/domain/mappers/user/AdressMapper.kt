@@ -4,7 +4,7 @@ import com.example.mycleanmvvm.data.api.model.AddressNetworkModel
 import com.example.mycleanmvvm.domain.models.AddressDomainModel
 
 
-fun AddressNetworkModel.toDomainModel(): AddressDomainModel {
+fun AddressNetworkModel.toDomain(): AddressDomainModel {
     return AddressDomainModel(
         street = this.street ?: "",
         suite = this.suite ?: "",

@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mycleanmvvm.data.NetworkClient
 import com.example.mycleanmvvm.data.repository.GetDataRepository
 
-class MyViewModelFactory(context: Context): ViewModelProvider.Factory {
+class MyViewModelFactory: ViewModelProvider.Factory {
+    private val networkClient: NetworkClient = NetworkClient()
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MyViewModel(repository = GetDataRepository(networkClient = NetworkClient())) as T
+        return MyViewModel(repository = GetDataRepository(service = networkClient.getRetrofitInstance())) as T
     }
 }

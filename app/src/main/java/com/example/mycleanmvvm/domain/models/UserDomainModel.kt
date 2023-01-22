@@ -11,5 +11,5 @@ data class UserDomainModel(
     var address: AddressDomainModel,
     var phone: String,
     var website: String,
-    var company: CompanyDomainModel
+    var company: CompanyDomainModel?
 )

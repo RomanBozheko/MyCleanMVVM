@@ -3,24 +3,15 @@ package com.example.mycleanmvvm.data.api.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class AddressNetworkModel(){
+class AddressNetworkModel(
     @SerializedName("street")
-    @Expose
-    var street: String? = null
-
+    val street: String,
     @SerializedName("suite")
-    @Expose
-    var suite: String? = null
-
+    val suite: String,
     @SerializedName("city")
-    @Expose
-    var city: String? = null
-
+    val city: String,
     @SerializedName("zipcode")
-    @Expose
-    var zipcode: String? = null
-
+    val zipcode: String,
     @SerializedName("geo")
-    @Expose
-    var geo: GeoNetworkModel? = null
-}
+    val geo: GeoNetworkModel
+    )
