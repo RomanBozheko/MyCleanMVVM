@@ -11,8 +11,7 @@ class GetDataRepository(
 ) : GetDataRepositoryInterface {
     override suspend fun getUserName(id: Int): UserDomainModel {
         val response = service.getUser(id).toDomain()
-        println(response.name)
-        println("=============================")
+
         return response
     }
 

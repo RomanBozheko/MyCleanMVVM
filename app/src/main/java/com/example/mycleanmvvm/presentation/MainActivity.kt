@@ -12,6 +12,7 @@ import com.example.mycleanmvvm.databinding.ActivityMainBinding
 import com.example.mycleanmvvm.domain.models.CompanyDomainModel
 import com.example.mycleanmvvm.domain.models.UserDomainModel
 import kotlinx.coroutines.*
+import java.lang.System.out
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,9 +52,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUser(userDomainModel: UserDomainModel) {
         binding.txtRes.text = userDomainModel.name
-        binding.txtResAddr.text = userDomainModel.address.city
+        binding.txtResAddr.text = userDomainModel.username
 
-        System.out.println("==========================================")
+        println("=========================================={")
         println(userDomainModel.id)
         println(userDomainModel.name)
         println(userDomainModel.username)
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         println(userDomainModel.company?.name)
         println(userDomainModel.company?.catchPhrase)
         println(userDomainModel.company?.bs)
-        System.out.println("==========================================")
+        println("=========================================={")
 
     }
 
