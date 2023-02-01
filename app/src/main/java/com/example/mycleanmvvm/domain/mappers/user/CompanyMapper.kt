@@ -1,4 +1,4 @@
-package com.example.mycleanmvvm.domain.mappers
+package com.example.mycleanmvvm.domain.mappers.user
 
 import com.example.mycleanmvvm.data.api.model.ComapanyNetworkModel
 import com.example.mycleanmvvm.domain.models.CompanyDomainModel

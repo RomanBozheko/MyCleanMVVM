@@ -13,5 +13,5 @@ class AddressNetworkModel(
     @SerializedName("zipcode")
     val zipcode: String,
     @SerializedName("geo")
-    val geo: GeoNetworkModel
+    val geo: GeoNetworkModel?
     )

@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     override fun onStart() {
         super.onStart()
         lifecycleScope.launch {
@@ -48,12 +49,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUser(userDomainModel: UserDomainModel){
+    private fun setUser(userDomainModel: UserDomainModel) {
         binding.txtRes.text = userDomainModel.name
         binding.txtResAddr.text = userDomainModel.address.city
 
-    }
+        System.out.println("==========================================")
+        println(userDomainModel.id)
+        println(userDomainModel.name)
+        println(userDomainModel.username)
+        println(userDomainModel.email)
+        println(userDomainModel.address.street)
+        println(userDomainModel.address.suite)
+        println(userDomainModel.address.city)
+        println(userDomainModel.address.zipcode)
+        println("${userDomainModel.address.geo.lat} :: ${userDomainModel.address.geo.lng}")
 
+
+        System.out.println("==========================================")
+
+    }
 
 
 }
