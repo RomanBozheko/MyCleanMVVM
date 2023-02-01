@@ -13,7 +13,7 @@ fun UserNetworkModel.toDomain(): UserDomainModel {
         address = this.address.toDomainAddress(),
         phone = this.phone ?: "",
         website = this.website ?: "",
-        company = null,
+        company = this.company?.toDomainCompany(),
     )
 }
 

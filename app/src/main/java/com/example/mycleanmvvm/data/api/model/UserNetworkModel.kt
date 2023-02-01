@@ -21,5 +21,5 @@ class UserNetworkModel(
     @SerializedName("website")
     val website: String?,
     @SerializedName("company")
-    val company: ComapanyNetworkModel?,
+    val company: CompanyNetworkModel?,
 )

@@ -1,12 +1,20 @@
 package com.example.mycleanmvvm.domain.mappers.user
 
-import com.example.mycleanmvvm.data.api.model.ComapanyNetworkModel
+
+import com.example.mycleanmvvm.data.api.model.CompanyNetworkModel
 import com.example.mycleanmvvm.domain.models.CompanyDomainModel
 
-fun ComapanyNetworkModel.toDomainModel(): CompanyDomainModel {
+fun CompanyNetworkModel.toDomainCompany(): CompanyDomainModel {
+    if (this == null) return CompanyDomainModel(
+        name = "no name",
+        catchPhrase = "",
+        bs = ""
+
+    )
+
     return CompanyDomainModel(
-        name = this.name ?: "",
-        catchPhrase = this.catchPhrase ?: "",
-        bs = this.bs ?: ""
+        name = this.name ?: "no name",
+        catchPhrase = this.catchPhrase ?: "no catchPhrase",
+        bs = this.bs ?: "no bs"
     )
 }

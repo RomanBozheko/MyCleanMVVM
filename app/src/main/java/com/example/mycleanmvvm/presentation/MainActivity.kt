@@ -63,8 +63,11 @@ class MainActivity : AppCompatActivity() {
         println(userDomainModel.address.city)
         println(userDomainModel.address.zipcode)
         println("${userDomainModel.address.geo.lat} :: ${userDomainModel.address.geo.lng}")
-
-
+        println(userDomainModel.phone)
+        println(userDomainModel.website)
+        println(userDomainModel.company?.name)
+        println(userDomainModel.company?.catchPhrase)
+        println(userDomainModel.company?.bs)
         System.out.println("==========================================")
 
     }
