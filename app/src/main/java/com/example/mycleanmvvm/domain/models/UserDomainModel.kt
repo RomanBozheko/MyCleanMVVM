@@ -1,8 +1,5 @@
 package com.example.mycleanmvvm.domain.models
 
-import com.example.mycleanmvvm.data.api.model.AddressNetworkModel
-
-
 data class UserDomainModel(
     var id: Int,
     var name: String,

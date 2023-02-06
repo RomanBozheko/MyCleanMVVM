@@ -1,9 +1,12 @@
 package com.example.mycleanmvvm.data.repository
 
-import com.example.mycleanmvvm.data.api.model.UserNetworkModel
+import com.example.mycleanmvvm.domain.models.TaskDomainModel
 import com.example.mycleanmvvm.domain.models.UserDomainModel
-import kotlinx.coroutines.Job
+import retrofit2.Call
+import retrofit2.Response
+
 
 interface GetDataRepositoryInterface {
-   suspend fun getUserName(id: Int): UserDomainModel
+    suspend fun getUserName(id: Int): UserDomainModel
+    suspend fun getUserTask(id: Int): List<TaskDomainModel>
 }

@@ -1,7 +1,6 @@
 package com.example.mycleanmvvm.data.api.model
 
 
-
 import com.google.gson.annotations.SerializedName
 
 
@@ -21,5 +20,5 @@ class UserNetworkModel(
     @SerializedName("website")
     val website: String?,
     @SerializedName("company")
-    val company: CompanyNetworkModel?,
+    val company: CompanyNetworkModel?
 )

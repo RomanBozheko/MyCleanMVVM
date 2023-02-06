@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import com.example.mycleanmvvm.data.repository.GetDataRepository
+import com.example.mycleanmvvm.domain.models.TaskDomainModel
 import com.example.mycleanmvvm.domain.models.UserDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
@@ -32,22 +33,21 @@ class MyViewModel(private val repository: GetDataRepository) : ViewModel() {
     )
     var nameUser: SharedFlow<UserDomainModel> = _nameUserMutable.asSharedFlow()
 
+    private var _taskUserMutable = MutableSharedFlow<TaskDomainModel>(
+        replay = 1,
+        extraBufferCapacity = 0,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+    var taskUser: SharedFlow<TaskDomainModel> = _taskUserMutable.asSharedFlow()
+
+
     suspend fun showName(id: Int) {
-        val test1 = repository.getUserName(id)
-        val test2 = repository.getUserName(id)
+        val user = repository.getUserName(id)
+        _nameUserMutable.tryEmit(user)
+    }
 
-        if (test1.name.contains("test")){
-            _nameUserMutable.tryEmit(
-                test1
-            )
-        } else {
-            _nameUserMutable.tryEmit(
-                test2
-            )
-        }
-
-//        _nameUserMutable.tryEmit(
-//            repository.getUserName(id)
-//        )
+    suspend fun showTask(id: Int) {
+        val task = repository.getUserTask(id)
+        _taskUserMutable.tryEmit(task)
     }
 }
