@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.temporal.ValueRange
 
 class MyViewModel(private val repository: GetDataRepository) : ViewModel() {
 
@@ -33,21 +34,19 @@ class MyViewModel(private val repository: GetDataRepository) : ViewModel() {
     )
     var nameUser: SharedFlow<UserDomainModel> = _nameUserMutable.asSharedFlow()
 
-    private var _taskUserMutable = MutableSharedFlow<TaskDomainModel>(
-        replay = 1,
-        extraBufferCapacity = 0,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    var taskUser: SharedFlow<TaskDomainModel> = _taskUserMutable.asSharedFlow()
-
-
     suspend fun showName(id: Int) {
         val user = repository.getUserName(id)
         _nameUserMutable.tryEmit(user)
     }
 
-    suspend fun showTask(id: Int) {
-        val task = repository.getUserTask(id)
-        _taskUserMutable.tryEmit(task)
+
+    private var _tasksUserMutable = MutableSharedFlow<List<TaskDomainModel>>()
+    var tasksUser: SharedFlow<List<TaskDomainModel>> = _tasksUserMutable.asSharedFlow()
+
+    suspend fun showTasks(id: Int) {
+        val tasks = repository.getUserTask(id)
+        _tasksUserMutable.tryEmit(tasks)
     }
+
+
 }

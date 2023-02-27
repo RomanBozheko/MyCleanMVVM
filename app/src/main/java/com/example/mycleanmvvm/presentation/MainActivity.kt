@@ -41,27 +41,36 @@ class MainActivity : AppCompatActivity() {
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect(this@MainActivity::setUser)
 
-            viewModel.taskUser
+            viewModel.tasksUser
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect(this@MainActivity::setTask)
-
+                .collect(this@MainActivity::setTasks)
         }
     }
 
     override fun onStart() {
         super.onStart()
         lifecycleScope.launch {
-            viewModel.showName((1..10).random())
-            viewModel.showTask(1)
+            println("< 000 >")
+            viewModel.showTasks(1)
+            println("< 111 >")
+            viewModel.showName(1)
         }
+    }
+
+    private fun setTasks(taskDomainModel: List<TaskDomainModel>){
+        println("//////////////////////////////////////")
+        println(taskDomainModel[1].id)
+        println(taskDomainModel[1].userId)
+        println(taskDomainModel[1].completed)
+        println(taskDomainModel[1].title)
+        println("//////////////////////////////////////")
     }
 
     private fun setUser(userDomainModel: UserDomainModel) {
         binding.txtRes.text = "${userDomainModel.name} - ${userDomainModel.id}"
         binding.txtResAddr.text = userDomainModel.email
 
-
-        println("=========================================={")
+        println("==========================================")
         println(userDomainModel.id)
         println(userDomainModel.name)
         println(userDomainModel.username)
@@ -76,17 +85,9 @@ class MainActivity : AppCompatActivity() {
         println(userDomainModel.company?.name)
         println(userDomainModel.company?.catchPhrase)
         println(userDomainModel.company?.bs)
-        println("=========================================={")
+        println("==========================================")
     }
 
-    private fun setTask(taskDomainModel: TaskDomainModel) {
-        println("-------------------------------------------")
-        println(taskDomainModel.id)
-        println(taskDomainModel.userId)
-        println(taskDomainModel.title)
-        println(taskDomainModel.completed)
-        println("-------------------------------------------")
-    }
 
 
 }
