@@ -59,10 +59,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setTasks(taskDomainModel: List<TaskDomainModel>){
         println("//////////////////////////////////////")
-        println(taskDomainModel[1].id)
-        println(taskDomainModel[1].userId)
-        println(taskDomainModel[1].completed)
-        println(taskDomainModel[1].title)
+        if(taskDomainModel.isNotEmpty()){
+            val firstTask = taskDomainModel.first()
+            println(firstTask.id)
+        }   else{
+            println("LIST_EMPTY")
+        }
         println("//////////////////////////////////////")
     }
 
