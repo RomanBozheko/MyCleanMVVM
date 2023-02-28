@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             MyViewModelFactory()
         )[MyViewModel::class.java]
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             viewModel.tasksUser
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect(this@MainActivity::setTasks)
@@ -58,24 +58,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setTasks(taskDomainModel: List<TaskDomainModel>){
+    private fun setTasks(taskDomainModel: List<TaskDomainModel>) {
 
-        if(taskDomainModel.isNotEmpty()){
-            println("Number of tasks: ${taskDomainModel.size} \n")
+        if (taskDomainModel.isNotEmpty()) {
+            println("Number of tasks: ${taskDomainModel.size} \n\n")
 //            println(taskDomainModel[0].userId)
 //            println(taskDomainModel[0].id)
 //            println(taskDomainModel[0].title)
 //            println(taskDomainModel[0].completed)
-
-            for (i in taskDomainModel.indices){
+            for (i in taskDomainModel.indices) {
                 val task = taskDomainModel[i]
-                println("User ID: ${task.userId}")
+                println("${i + 1} User ID: ${task.userId}")
                 println("Task ID: ${task.id}")
                 println("Task Title: ${task.title}")
                 println("Task Completed: ${task.completed}")
                 println("--------------------")
             }
-        }   else{
+        } else {
             println("LIST_EMPTY")
         }
     }
@@ -83,7 +82,6 @@ class MainActivity : AppCompatActivity() {
     private fun setUser(userDomainModel: UserDomainModel) {
         binding.txtRes.text = "${userDomainModel.name} - ${userDomainModel.id}"
         binding.txtResAddr.text = userDomainModel.email
-
         println("==========================================")
         println(userDomainModel.id)
         println(userDomainModel.name)
@@ -101,7 +99,6 @@ class MainActivity : AppCompatActivity() {
         println(userDomainModel.company?.bs)
         println("==========================================")
     }
-
 
 
 }
