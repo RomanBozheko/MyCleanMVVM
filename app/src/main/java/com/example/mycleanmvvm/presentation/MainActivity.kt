@@ -52,17 +52,16 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         lifecycleScope.launch {
-            viewModel.showTasks(1)
-            viewModel.showName(3)
+            val user = 9
+            viewModel.showTasks(user)
+            viewModel.showName(user)
         }
     }
 
     private fun setTasks(taskDomainModel: List<TaskDomainModel>){
-        println("//////////////////////////////////////")
+
         if(taskDomainModel.isNotEmpty()){
             println("Number of tasks: ${taskDomainModel.size} \n")
-
-
 //            println(taskDomainModel[0].userId)
 //            println(taskDomainModel[0].id)
 //            println(taskDomainModel[0].title)
@@ -79,7 +78,6 @@ class MainActivity : AppCompatActivity() {
         }   else{
             println("LIST_EMPTY")
         }
-        println("\n //////////////////////////////////////")
     }
 
     private fun setUser(userDomainModel: UserDomainModel) {
