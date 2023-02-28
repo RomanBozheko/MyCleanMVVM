@@ -35,37 +35,51 @@ class MainActivity : AppCompatActivity() {
             MyViewModelFactory()
         )[MyViewModel::class.java]
 
+        lifecycleScope.launch{
+            viewModel.tasksUser
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect(this@MainActivity::setTasks)
+        }
+
 
         lifecycleScope.launch {
             viewModel.nameUser
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect(this@MainActivity::setUser)
-
-            viewModel.tasksUser
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect(this@MainActivity::setTasks)
         }
     }
 
     override fun onStart() {
         super.onStart()
         lifecycleScope.launch {
-            println("< 000 >")
             viewModel.showTasks(1)
-            println("< 111 >")
-            viewModel.showName(1)
+            viewModel.showName(3)
         }
     }
 
     private fun setTasks(taskDomainModel: List<TaskDomainModel>){
         println("//////////////////////////////////////")
         if(taskDomainModel.isNotEmpty()){
-            val firstTask = taskDomainModel.first()
-            println(firstTask.id)
+            println("Number of tasks: ${taskDomainModel.size} \n")
+
+
+//            println(taskDomainModel[0].userId)
+//            println(taskDomainModel[0].id)
+//            println(taskDomainModel[0].title)
+//            println(taskDomainModel[0].completed)
+
+            for (i in taskDomainModel.indices){
+                val task = taskDomainModel[i]
+                println("User ID: ${task.userId}")
+                println("Task ID: ${task.id}")
+                println("Task Title: ${task.title}")
+                println("Task Completed: ${task.completed}")
+                println("--------------------")
+            }
         }   else{
             println("LIST_EMPTY")
         }
-        println("//////////////////////////////////////")
+        println("\n //////////////////////////////////////")
     }
 
     private fun setUser(userDomainModel: UserDomainModel) {
