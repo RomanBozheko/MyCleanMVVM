@@ -40,7 +40,11 @@ class MyViewModel(private val repository: GetDataRepository) : ViewModel() {
     }
 
 
-    private var _tasksUserMutable = MutableSharedFlow<List<TaskDomainModel>>(replay = 1)
+    private var _tasksUserMutable = MutableSharedFlow<List<TaskDomainModel>>(
+        replay = 1,
+        extraBufferCapacity = 0,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
     var tasksUser: SharedFlow<List<TaskDomainModel>> = _tasksUserMutable.asSharedFlow()
 
     suspend fun showTasks(id: Int) {

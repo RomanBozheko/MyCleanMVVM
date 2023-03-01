@@ -35,17 +35,31 @@ class MainActivity : AppCompatActivity() {
             MyViewModelFactory()
         )[MyViewModel::class.java]
 
+//        lifecycleScope.launch {
+//            viewModel.tasksUser
+//                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+//                .collect(this@MainActivity::setTasks)
+//        }
+//        lifecycleScope.launch {
+//            viewModel.nameUser
+//                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+//                .collect(this@MainActivity::setUser)
+//        }
         lifecycleScope.launch {
-            viewModel.tasksUser
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect(this@MainActivity::setTasks)
-        }
-
-
-        lifecycleScope.launch {
-            viewModel.nameUser
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect(this@MainActivity::setUser)
+            coroutineScope {
+                val tasksUserJob = launch {
+                    viewModel.tasksUser
+                        .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                        .collect(this@MainActivity::setTasks)
+                }
+                val nameUserJob = launch {
+                    viewModel.nameUser
+                        .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                        .collect(this@MainActivity::setUser)
+                }
+                tasksUserJob.join()
+                nameUserJob.join()
+            }
         }
     }
 
